@@ -1,0 +1,38 @@
+{% extends "pos/base.html" %}
+{% load staticfiles %}
+{% block scripts %}
+    {{ block.super }}
+    <script src="{% static 'pos/ticket.js' %}"></script>   
+{% endblock %}
+{% block content %}
+    <nav class="navbar navbar-inverse">
+        <div class="navbar-header">
+          <a href="{% url 'pos-home' %}" type="button" class="btn btn-danger btn-lg">Back</a>
+          <button type="button" class="btn btn-warning btn-lg">Delete</button>
+          <button type="button" class="btn btn-success btn-lg">Next</button>
+        </div>
+      </nav>
+    <div class="parent-container">
+        <div class="table-responsive" id="ticket-table-div">
+            <table class="table table-bordered" id="ticket-table" unselectable="on">
+                <thead>
+                    <col width="15">
+                    <col width="100">
+                    <tr>
+                        <th>Quanity</th>
+                        <th>Item</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tr onclick="highlightTicketRow()">
+                    <td>1</td>
+                    <td>Large Pizza</td>
+                    <td>12.00</td>
+                </tr>
+            </table>
+        </div>
+        <div id="menu-buttons">
+            <button onclick="addTicketRow('1', 'Large Pizza', '12.00')">Large Pizza</button>
+        </div>
+    </div>
+{% endblock %}

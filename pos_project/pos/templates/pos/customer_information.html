@@ -1,0 +1,56 @@
+{% extends "pos/base.html" %}
+{% block content %}
+<nav class="navbar navbar-inverse">
+  <div class="navbar-header">
+    <a href="{% url 'pos-home' %}" type="button" class="btn btn-danger btn-lg">Back</a>
+    <button type="button" class="btn btn-primary active btn-lg" id="customer_status_toggle">Customer Status</button>
+    <button type="button" class="btn btn-primary active btn-lg">Previous Orders</button>
+    <button type="button" class="btn btn-success btn-lg">Next</button>
+  </div>
+</nav>
+<div class="parent-container">
+  <div class="customer-info-forms">
+    <h1>Customer Information</h1>
+    <table class="table table-bordered">
+      <form action="/customer_info/{{phone_num}}/" method="POST">
+        <tr class="form-group">
+          <td><label for="phone_num">Phone Number: </label></td>
+          <td><input type="text" class="form-control" id="phone_num" name="phone_num" maxlength="10" placeholder="***-***-****" value="{{ customer.phone }}"></td>
+          <td><button type="submit">Search</button></td>
+        </tr>
+        <tr class="form-group">
+          <td><label for="first_name">First Name: </label></td>
+          <td><input type="text" class="form-control" id="first_name" value="{{ customer.first_name }}"></td>
+        </tr>
+        <tr class="form-group">
+          <td><label for="last_name">Last Name: </label></td>
+          <td><input type="text" class="form-control" id="last_name" value="{{ customer.last_name }}"></td>
+        </tr>
+        <tr class="form-group">
+          <td><label for="address_1">Address: </label></td>
+          <td><input type="text" class="form-control" id="address_1" value="{{ customer.address_1 }}"></td>
+        </tr>
+        <tr class="form-group">
+          <td><label for="address_2"></label></td>
+          <td><input type="text" class="form-control" id="address_2" value="{{ customer.address_2 }}"></td>
+        </tr>
+        <tr class="form-group">
+          <td><label for="city">City: </label></td>
+          <td><input type="text" class="form-control" id="city" value="{{ customer.city }}"></td>
+        </tr>
+        <tr class="form-group">
+          <td><label for="zip_code">Zip Code: </label></td>
+          <td><input type="text" class="form-control" id="zip_code" maxlength="5" value="{{ customer.zip_code }}"></td>
+        </tr>
+        <tr class="form-group">
+          <td><label for="comment">Comments: </label></td>
+          <td><textarea class="form-control" rows="5" style="min-width: 100%" id="comment"></textarea></td>
+        </tr>
+      </form>
+    </table>
+  </div>
+  <div id="customer-info-optional-container">
+    <button id="toggle">Test</button>
+  </div>
+</div>
+{% endblock content %}

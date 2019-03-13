@@ -1,0 +1,57 @@
+body {
+    background: #ffffff;
+    color: #333333;
+    margin-top: 5rem;
+    border-color: #000000;
+}
+
+textarea {
+    resize: none;
+}
+
+.table td {
+    padding: .25rem;
+}
+
+.table-bordered {
+    border: 3px;
+    border-color: #000000;
+}
+
+.main-container {
+    margin-left: 50px;
+    margin-top: 15px;
+    margin-right: 50px;
+    margin-bottom: 50px;
+}
+
+.parent-container {
+    display: flex;
+}
+
+.customer-info-forms {
+    font-size: 22px;
+    float: left;
+    width: 60%;
+}
+
+#customer-info-optional-container {
+    float: left;
+    display: none;
+}
+
+#customer-info-optional-container.show {
+    display: block;
+}
+
+#ticket-table-div {
+    border-top-color: #000000;
+    float: left;
+    user-select: none;
+    width: 35%;
+}
+
+#menu-buttons {
+    float: left;
+    margin-left: 10;
+}
