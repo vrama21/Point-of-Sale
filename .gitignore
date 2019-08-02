@@ -1,4 +1,4 @@
-*.idea
-*.vscode
-*old
-*__pycache__
+/.idea
+/.vscode
+/old
+/__pycache__
