@@ -1,38 +1,81 @@
 {% extends "pos/base.html" %}
 {% load staticfiles %}
+
 {% block scripts %}
-    {{ block.super }}
-    <script src="{% static 'pos/ticket.js' %}"></script>   
+{{ block.super }}
+<script src="{% static 'pos/js/ticket.js' %}"></script>
 {% endblock %}
+
 {% block content %}
-    <nav class="navbar navbar-inverse">
-        <div class="navbar-header">
-          <a href="{% url 'pos-home' %}" type="button" class="btn btn-danger btn-lg">Back</a>
-          <button type="button" class="btn btn-warning btn-lg">Delete</button>
-          <button type="button" class="btn btn-success btn-lg">Next</button>
-        </div>
-      </nav>
-    <div class="parent-container">
-        <div class="table-responsive" id="ticket-table-div">
-            <table class="table table-bordered" id="ticket-table" unselectable="on">
-                <thead>
-                    <col width="15">
-                    <col width="100">
-                    <tr>
-                        <th>Quanity</th>
-                        <th>Item</th>
-                        <th>Price</th>
-                    </tr>
-                </thead>
-                <tr onclick="highlightTicketRow()">
-                    <td>1</td>
-                    <td>Large Pizza</td>
-                    <td>12.00</td>
+
+<nav class="navbar navbar-inverse">
+    <div class="navbar-header">
+        <a href="{% url 'pos-home' %}" type="button" class="btn btn-danger btn-lg">Back</a>
+        <i class="glyphicon glyphicon-chevron-left"></i>
+        <button type="button" class="btn btn-warning btn-lg" onclick="deleteTicketRow()">Delete</button>
+        <button type="button" class="btn btn-info btn-lg">
+            <span class="glyphicon glyphicon-chevron-right"></span> Next
+        </button>
+    </div>
+</nav>
+<div class="content-container">
+    <div id="ticket-table-div">
+        <table class="table table-bordered" id="ticket-table" unselectable="on">
+            <thead>
+                <col width="15">
+                <col width="0">
+                <col width="15">
+                <tr>
+                    <th align="left">Qty</th>
+                    <th>Item</th>
+                    <th align="right">Price</th>
                 </tr>
-            </table>
-        </div>
-        <div id="menu-buttons">
-            <button onclick="addTicketRow('1', 'Large Pizza', '12.00')">Large Pizza</button>
+            </thead>
+            <tr onclick="highlightTicketRow()">
+            </tr>
+        </table>
+        <table class="table table-borderless" id="ticket-total" unselectable="on">
+            <tr>
+                <td>Subtotal: </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Tax: </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Total: </td>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+    <div id="menu-parent-container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item-active" aria-current="page">Pizza</li>
+                <li class="breadcrumb-item" aria-current="page">Topping</li>
+            </ol>
+        </nav>
+        <div id="menu-items">
+            <button class="btn btn-block menu-button">
+                <img src="{% static 'media/pizza.png' %}">
+                <span class="menu-button-text">Large Pizza</span>
+            </button>
+            <button class="btn btn-block menu-button" onclick="addTicketRow('Cheese Steak', '7.50')">
+                <span class="menu-button-text">Cheese Steak</span>
+            </button>
+            <button class="btn btn-block menu-button" onclick="addTicketRow('10 Wings', '9.00')">
+                <img src="{% static 'media/wings.png' %}">
+                <span class="menu-button-text">10 Wings</span>
+            </button>
+            <button class="btn btn-block menu-button" onclick="addTicketRow('Fries', '3.00')">
+                <img src="{% static 'media/fries.png' %}">
+                <span class="menu-button-text">Fries</span>
+            </button>
+            <button class="btn btn-block menu-button" onclick="addTicketRow('2-Liter Soda', '2.75')">
+                <span class="menu-button-text">2-Liter Soda</span>
+            </button>
         </div>
     </div>
+</div>
 {% endblock %}
