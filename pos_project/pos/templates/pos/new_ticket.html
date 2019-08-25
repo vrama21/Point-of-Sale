@@ -12,40 +12,36 @@
     <div class="navbar-header">
         <a href="{% url 'pos-home' %}" type="button" class="btn btn-danger btn-lg">Back</a>
         <i class="glyphicon glyphicon-chevron-left"></i>
-        <button type="button" class="btn btn-warning btn-lg" onclick="deleteTicketRow()">Delete</button>
+        <button type="button" class="btn btn-warning btn-lg">Delete</button>
         <button type="button" class="btn btn-info btn-lg">
-            <span class="glyphicon glyphicon-chevron-right"></span> Next
+            <span class="glyphicon glyphicon-chevron-right">Next</span>
         </button>
+        <button type="button" id="add-menu-item" class="btn btn-success btn-lg">Add Menu Item</button>
     </div>
 </nav>
 <div class="content-container">
     <div id="ticket-table-div">
         <table class="table table-bordered" id="ticket-table" unselectable="on">
             <thead>
-                <col width="15">
-                <col width="0">
-                <col width="15">
                 <tr>
-                    <th align="left">Qty</th>
-                    <th>Item</th>
-                    <th align="right">Price</th>
+                    <th id="qty-header">Qty</th>
+                    <th id="item-header">Item</th>
+                    <th id="price-header">Price</th>
                 </tr>
             </thead>
-            <tr onclick="highlightTicketRow()">
-            </tr>
         </table>
         <table class="table table-borderless" id="ticket-total" unselectable="on">
             <tr>
                 <td>Subtotal: </td>
-                <td></td>
+                <td id="subtotal"></td>
             </tr>
             <tr>
                 <td>Tax: </td>
-                <td></td>
+                <td id="tax"></td>
             </tr>
             <tr>
                 <td>Total: </td>
-                <td></td>
+                <td id="total"></td>
             </tr>
         </table>
     </div>
@@ -57,7 +53,7 @@
             </ol>
         </nav>
         <div id="menu-items">
-            <button class="btn btn-block menu-button">
+            <button class="btn btn-block menu-button" value="7.50">
                 <img src="{% static 'media/pizza.png' %}">
                 <span class="menu-button-text">Large Pizza</span>
             </button>

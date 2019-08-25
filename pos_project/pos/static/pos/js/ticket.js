@@ -1,18 +1,25 @@
-function addTicketRow(item, price) {
-    const table = document.getElementById("ticket-table");
-    const row = table.insertRow();
-    const td1 = row.insertCell(0);
-    const td2 = row.insertCell(1);
-    const td3 = row.insertCell(2);
+const addTicketRow = function () {
+    $(".menu-button").on("click", function() {
+        const table = document.getElementById("ticket-table");
+        const row = table.insertRow();
+        const td1 = row.insertCell(0);
+        const td2 = row.insertCell(1);
+        const td3 = row.insertCell(2);
 
-    row.onclick = "highlightTicketRow()"
-    td1.className = "ticket-qty"
-    td2.className = "ticket-item"
-    td3.className = "ticket-price"
+        td1.className = "ticket-qty"
+        td2.className = "ticket-item"
+        td3.className = "ticket-price"
 
-    td1.innerHTML = '1'
-    td2.innerHTML = item
-    td3.innerHTML = price
+        console.log(this)
+        console.log(this.children)
+        console.log(this.children[1])
+        console.log(this.children[1].textContent)
+        console.log(this.children[1].value)
+
+        td1.innerHTML = '1'
+        td2.innerHTML = this.children[1].textContent
+        td3.innerHTML = this.value
+    })
 }
 
 // TODO: Fix This
@@ -26,13 +33,21 @@ function deleteTicketRow() {
     }
 }
 
-// TODO: FIX THIS
-function addMenuButton() {
-    const element = document.getElementById('menu-button-div');
-    const button = document.createElement('button')
-    this.onclick = function () {
-        element.appendChild(button)
-    }
+const addMenuButton = function(value) {
+    const element = document.getElementById('menu-items');
+    const button = document.createElement('button');
+    const span = document.createElement('span');
+
+    value = "7.50"
+    button.setAttribute('class', 'btn btn-block menu-button');
+    button.setAttribute('value', value);
+    span.setAttribute('class', 'menu-button-text');
+
+    $("#add-menu-item").on("click", function () {
+        element.appendChild(button);
+        button.appendChild(span);
+        
+    })
 }
 
 // function highlightTicketRow() {
@@ -85,8 +100,7 @@ function highlightTicketRow() {
                 this.style.backgroundColor = highlighter;
                 this.highlight = true;
                 this.className += "selected";
-            }
-            else {
+            } else {
                 this.style.backgroundColor = "";
                 this.highlight = false;
             }
@@ -112,17 +126,21 @@ for (let i = 0; i < menu_buttons; i++) {
     menu_buttons[i].addEventListener('click', subtotalPrice(), false)
 }
 
-function subtotalPrice() {
-    const table = document.getElementById("ticket-table");
-    const price = document.getElementById("ticket-total");
+const subtotalPrice = function () {
+    const tableDiv = document.getElementById("ticket-table");
+    const priceDiv = document.getElementById("ticket-total");
 
     console.log('This function is being called')
-    for (let i = 1; i < table.rows.length; i++) {
+    for (let i = 1; i < tableDiv.rows.length; i++) {
         console.log(table.rows[i][2].innerHTML)
         // for (var c = 0, m = table.rows[i].cells.length; c < m; c++) {
         // alert(table.rows[i].cells[c].innerHTML);
-        }
-        // subtotalSum = table.rows[i].cells[2].innerHTML;
-        // price.cell[1].innerHTML = subtotalSum
     }
+    // subtotalSum = table.rows[i].cells[2].innerHTML;
+    // price.cell[1].innerHTML = subtotalSum
+}
 
+$(document).ready(function() {
+    addTicketRow();
+    addMenuButton();
+})
